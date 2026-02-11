@@ -1,9 +1,10 @@
 import random
 
+
 def get_numbers_ticket(min, max, quantity):
     numbers = []
     
-    if min<1 or max>1000 or quantity>max:
+    if min < 1 or max > 1000 or not (1 <= quantity <= max):
         return numbers
     
     numbers = random.sample(range(min, max + 1), quantity)
@@ -17,9 +18,5 @@ quantity = int(input("Введіть кількість номерів: "))
 
 result = get_numbers_ticket(min, max, quantity)
 
-print(result)
-
-
-
-         
-
+if __name__ == "__main__":
+    print(result)

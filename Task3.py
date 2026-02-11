@@ -1,16 +1,14 @@
 import re
 
+
 def normalize_phone(phone_number: str) -> str:
     cleaned_number = re.sub(r"[^\d+]", "", phone_number.strip())
     base_number = cleaned_number[-10:]
-    prefix = cleaned_number[:-10]
-    
-    if prefix == "+38" or prefix == "38" or prefix == "+":
-        return "+38" + base_number
-    else:
-        return "+38" + base_number
+    return "+38" + base_number
 
-raw_numbers = [
+
+if __name__ == "__main__":
+    raw_numbers = [
     "067\\t123 4567",
     "(095) 234-5678\\n",
     "+380 44 123 4567",
@@ -20,7 +18,7 @@ raw_numbers = [
     "(050)8889900",
     "38050-111-22-22",
     "38050 111 22 11   ",
-]
+    ]
 
-sanitized_numbers = [normalize_phone(num) for num in raw_numbers]
-print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)        
+    sanitized_numbers = [normalize_phone(num) for num in raw_numbers]
+    print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)        

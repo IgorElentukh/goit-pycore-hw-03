@@ -13,16 +13,18 @@ def get_upcoming_birthdays(users):
         if birthday_this_year < today:
             birthday_this_year = birthday_this_year.replace(year=today.year + 1)
 
-        day_of_week = birthday_this_year.weekday()
-        if day_of_week == 5:
-            congratulation_date = birthday_this_year + timedelta(days=2)
-        elif day_of_week == 6:
-            congratulation_date = birthday_this_year + timedelta(days=1)
-        else:
-            congratulation_date = birthday_this_year
-
         difference_days = (birthday_this_year - today).days
+
         if difference_days >= 0 and difference_days <= 7:
+            day_of_week = birthday_this_year.weekday()
+
+            if day_of_week == 5:
+                congratulation_date = birthday_this_year + timedelta(days=2)
+            elif day_of_week == 6:
+                congratulation_date = birthday_this_year + timedelta(days=1)
+            else:
+                congratulation_date = birthday_this_year
+
             congratulation_date_string = congratulation_date.strftime("%Y.%m.%d")
 
             upcoming_birthday = {
@@ -31,8 +33,9 @@ def get_upcoming_birthdays(users):
                 } 
             
             upcoming_birthdays.append(upcoming_birthday)
-    
+
     return upcoming_birthdays
+
 
 if __name__ == "__main__":
     users = [
@@ -42,7 +45,4 @@ if __name__ == "__main__":
 
     upcoming_birthdays = get_upcoming_birthdays(users)
     print("Список привітань на цьому тижні:", upcoming_birthdays)
-
-
-
 
